@@ -1,0 +1,15 @@
+// 红色和绿色通道对调.
+kernel vec4 vignetteKernel(__sample image) {
+    // vec4 originVec = sample(image, samplerCoord(image));
+    // unpremultiply(originVec);
+
+    vec4 originVec = image.rgba;
+
+    vec4 changedVec;
+    changedVec.x = originVec.y;
+    changedVec.y = originVec.x;
+    changedVec.z = originVec.z;
+    changedVec.w = originVec.w;
+
+    return changedVec;
+}
